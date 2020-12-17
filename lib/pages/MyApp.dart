@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:basic_app/ChangeNameCard.dart';
 import 'package:basic_app/Drawer.dart';
-
+import 'package:http/http.dart' as api;
+import 'dart:convert';
 
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
@@ -12,11 +12,20 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   TextEditingController _nameController = TextEditingController();
   var myText = "Chane me";
+  var apiUrl = "http://jsonplaceholder.typicode.com/photos";
+  var data;
   @override
   void initState() {
     super.initState();
-
+    getData();
   }
+
+  getData() async {
+    var res = await api.get(apiUrl);
+    data = json.decode(res.body);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,11 +40,19 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-              child: Card(
-                  child:ChangeNameCard(myText,_nameController)
-              ),
-            ),
+            child: data != null
+                ? ListView.builder(itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        leading: Image.network(data[index]["url"]),
+                        title: Text(data[index]["title"]),
+                      ),
+                    );
+                  })
+                : Center(
+                    child: CircularProgressIndicator(),
+                  ),
           ),
           drawer: MyDrawer(),
           floatingActionButton: FloatingActionButton(
