@@ -1,4 +1,5 @@
 import 'package:basic_app/pages/List.dart';
+import 'package:basic_app/pages/ListSL.dart';
 import 'package:basic_app/pages/Login.dart';
 import 'package:basic_app/utills/Constants.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.teal,
         ),
         home: Constants.prefs.getBool(Constants.authKey) == true
-            ? List()
+            ? ListSL()
             : Login());
   }
 }
