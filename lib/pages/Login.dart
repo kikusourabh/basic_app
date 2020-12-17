@@ -1,3 +1,4 @@
+import 'package:basic_app/utills/Constants.dart';
 import 'package:flutter/material.dart';
 import 'List.dart';
 
@@ -57,7 +58,8 @@ class _LoginState extends State<Login> {
                       padding: EdgeInsets.only(bottom: 8.0),
                       child: RaisedButton(
                         onPressed: () {
-                          Navigator.push(context,
+                          Constants.prefs.setBool(Constants.authKey, true);
+                          Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (context) => List()));
                         },
                         textColor: Colors.white,

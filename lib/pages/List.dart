@@ -1,3 +1,5 @@
+import 'package:basic_app/pages/Login.dart';
+import 'package:basic_app/utills/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:basic_app/Drawer.dart';
 import 'dart:convert';
@@ -30,6 +32,16 @@ class _ListState extends State<List> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text("Awsome app"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              Constants.prefs.setBool(Constants.authKey, false);
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => Login()));
+            },
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
