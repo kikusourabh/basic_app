@@ -15,29 +15,26 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Awsome app"),
         ),
-        body: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.teal,
-              gradient: LinearGradient(colors: [
-                Colors.red,
-                Colors.redAccent
-              ]),
-              borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 5,
-                    offset: Offset(3,5)
-                  )
-                ]
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: 50,
+              width: 50,
+              color: Colors.redAccent,
             ),
-            padding: const EdgeInsets.all(8),
-            alignment: Alignment.center,
-            width: 100,
-            height: 100,
-            child: Text("I'm a \nBox",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20)),
-          ),
+            Container(
+              height: 50,
+              width: 50,
+              color: Colors.tealAccent,
+            ),
+            Container(
+              height: 50,
+              width: 50,
+              color: Colors.cyanAccent,
+            )
+          ],
         ),
       )
     );
